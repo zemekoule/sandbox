@@ -6,5 +6,37 @@ application:
 session:
 	expiration: 14 days
 
+extensions:
+    dbal: Nettrine\DBAL\DI\DbalExtension
+    dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
+    orm: Nettrine\ORM\DI\OrmExtension
+    orm.console: Nettrine\ORM\DI\OrmConsoleExtension
+    orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
+    console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+    migrations: Nettrine\Migrations\DI\MigrationsExtension
+
 services:
 	router: App\RouterFactory::createRouter
+#	-
+#		class: app\model\Database\Repository\UserRepository
+#		factory: @\app\model\Database\EntityManager::getRepository(app\model\Database\Entity\User)
+
+
+
+orm.annotations:
+	paths:
+		- app/model/Database/Entity
+	ignore: [] # ignored annotations
+	cache: Doctrine\Common\Cache\FilesystemCache
+	cacheDir: '%tempDir%/cache/Doctrine.Annotations'
+
+orm:
+	# Own em class
+	entityManagerClass: app\model\Database\EntityManager
+
+migrations:
+    table: doctrine_migrations
+    column: version
+    directory: %appDir%/../migrations
+    namespace: Migrations
+    versionsOrganization: null # null, year, year_and_month
