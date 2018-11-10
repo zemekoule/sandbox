@@ -1,0 +1,15 @@
+parameters:
+
+
+#database:
+#	dsn: 'mysql:host=127.0.0.1;dbname=test'
+#	user:
+#	password:
+
+dbal:
+    connection:
+        host: 172.30.99.10
+        user: root
+        password:
+        dbname: mathilda
+        #driver: pdo_pgsql
