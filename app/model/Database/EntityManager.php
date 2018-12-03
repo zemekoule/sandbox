@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace app\model\Database;
+namespace App\Model\Database;
 
 use app\model\Database\Entity\User;
 use app\model\Database\Repository\UserRepository;

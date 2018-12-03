@@ -17,6 +17,7 @@ extensions:
 
 services:
 	router: App\RouterFactory::createRouter
+	- App\Grids\IUserGridFactory
 #	-
 #		class: app\model\Database\Repository\UserRepository
 #		factory: @\app\model\Database\EntityManager::getRepository(app\model\Database\Entity\User)
@@ -27,12 +28,12 @@ orm.annotations:
 	paths:
 		- app/model/Database/Entity
 	ignore: [] # ignored annotations
-	cache: Doctrine\Common\Cache\FilesystemCache
-	cacheDir: '%tempDir%/cache/Doctrine.Annotations'
+#	cache: Doctrine\Common\Cache\FilesystemCache
+#	cacheDir: '%tempDir%/cache/Doctrine.Annotations'
 
 orm:
 	# Own em class
-	entityManagerClass: app\model\Database\EntityManager
+	entityManagerClass: App\Model\Database\EntityManager
 
 migrations:
     table: doctrine_migrations
