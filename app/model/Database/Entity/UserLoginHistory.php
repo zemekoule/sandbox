@@ -45,6 +45,15 @@ class UserLoginHistory {
 	}
 
 	/**
+	 * @return \Ramsey\Uuid\UuidInterface
+	 */
+	public function getId(): \Ramsey\Uuid\UuidInterface {
+		return $this->id;
+	}
+
+
+
+	/**
 	 * @return \App\Model\Database\Entity\User
 	 */
 	public function getUser(): User {

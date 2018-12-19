@@ -34,9 +34,28 @@ class User {
 
 	/**
 	 * @OneToMany(targetEntity="UserLoginHistory", mappedBy="user")
-	 * @var ArrayCollection
+	 * @var \Doctrine\ORM\PersistentCollection
 	 */
 	protected $loginHistories;
+
+	/**
+	 * @ORM\ManyToMany(targetEntity="Role")
+	 * @var \Doctrine\ORM\PersistentCollection
+	 */
+	protected $roles;
+
+	/**
+	 * @ORM\ManyToMany(targetEntity="User")
+	 * @var \Doctrine\ORM\PersistentCollection
+	 */
+	protected $buddies;
+
+
+	/**
+	 * @ORM\ManyToMany(targetEntity="Group", inversedBy="members")
+	 * @var \Doctrine\ORM\PersistentCollection
+	 */
+	private $groups;
 
 	public function __construct(string $name) {
 
@@ -47,9 +66,6 @@ class User {
 		return $this->id;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getName(): string {
 		return $this->name;
 	}
@@ -59,14 +75,21 @@ class User {
 			return null;
 		}
 
-		$criteria = Criteria::create();
-		$criteria->orderBy(['createdAt' => Criteria::DESC])->setMaxResults(1);
+//		bdump($this->loginHistories);
 
-		$s = $this->loginHistories->matching($criteria);
-		$s = $s->first();
-
+		$s = $this->loginHistories->first();
 		return ($s ? $s->getCreatedAt()->format('d.m.y H:i') : null);
+
+
+//		$criteria = Criteria::create();
+//		$criteria->orderBy(['createdAt' => Criteria::DESC])->setMaxResults(1);
+//
+//		$s = $this->loginHistories->matching($criteria)->first();
+//
+//		return ($s ? $s->getCreatedAt()->format('d.m.y H:i') : null);
 	}
+
+
 
 	/**
 	 * @param string $name
@@ -74,5 +97,32 @@ class User {
 	public function setName(string $name): void {
 		$this->name = $name;
 	}
+
+	/**
+	 * @return \Doctrine\ORM\PersistentCollection
+	 */
+	public function getRoles(): \Doctrine\ORM\PersistentCollection {
+		return $this->roles;
+	}
+
+	public function addBuddy(User $buddy) {
+		return $this->buddies->add($buddy);
+	}
+
+	/**
+	 * @return \Doctrine\ORM\PersistentCollection
+	 */
+	public function getBuddies(): \Doctrine\ORM\PersistentCollection {
+		return $this->buddies;
+	}
+
+	/**
+	 * @return \Doctrine\ORM\PersistentCollection
+	 */
+	public function getGroups(): \Doctrine\ORM\PersistentCollection {
+		return $this->groups;
+	}
+
+
 
 }
