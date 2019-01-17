@@ -14,6 +14,7 @@ extensions:
     orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
     console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
     migrations: Nettrine\Migrations\DI\MigrationsExtension
+    - Jarda\Forms\Controls\DI\MultiplierExtension
 
 services:
 	router: App\RouterFactory::createRouter
