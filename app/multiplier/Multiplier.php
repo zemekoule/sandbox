@@ -27,6 +27,7 @@ class Multiplier extends \WebChemistry\Forms\Controls\Multiplier {
 			foreach ($defaults as $attr => &$value) {
 				if (($selectBox = $container->getComponent($attr)) instanceof SelectBox) {
 					/** @var SelectBox $selectBox */
+					$selectBox->checkDefaultValue();
 					if (($selectBox->getPrompt() !== false) && ($value === "")) {
 						$value = null;
 					}
