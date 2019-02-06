@@ -5,6 +5,7 @@ namespace FrontModule;
 use App\Model\Database\Entity\Group;
 use App\Model\Database\Entity\User;
 use App\Model\Database\EntityManager;
+use Doctrine\DBAL\LockMode;
 use Nette;
 
 /**
@@ -24,11 +25,28 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
 	private $aaa;
 
 
-	public function __construct(string $ahoj, array $pico, int $cau, string $novej, $aaa) {
-		$this->ahoj = $ahoj;
-		$ahoj = new MojeTrida;
-		$this->novej = $novej;
-		$this->aaa = $aaa;
+//	public function __construct(string $ahoj, array $pico, int $cau, string $novej, $aaa) {
+//		$this->ahoj = $ahoj;
+//		$ahoj = new MojeTrida;
+//		$this->novej = $novej;
+//		$this->aaa = $aaa;
+//	}
+
+
+	/**
+	 * @throws \Doctrine\ORM\ORMException
+	 */
+	public function actionDefault() {
+		$codeReset = Nette\Utils\Random::generate(10, 'A-Za-z');
+		/** @var User $user */
+		$user = $this->entityManager->getRepository(User::class)->findOneBy(['name' => 'Jarda']);
+		$entityId = $user->getId();
+		$users = $this->entityManager->find(User::class, $entityId, LockMode::OPTIMISTIC, 0);
+		//$user->setCodeReset($codeReset);
+		//$this->entityManager->persist($user);
+		//$this->entityManager->flush();
+
+		dump($users);
 	}
 
 	/**
@@ -38,15 +56,15 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
 	 */
 	public function renderDefault() {
 
-		$this['loginForm']->setDefaults([]);
+		//$this['loginForm']->setDefaults([]);
 
 
 
 		/** @var User $user */
-	 	$user = $this->entityManager->getRepository(User::class)->findOneBy(['name' => 'Jarda']);
+	 	//$user = $this->entityManager->getRepository(User::class)->findOneBy(['name' => 'Jarda']);
 
 	 	/** @var Group $group */
-	 	$group = $this->entityManager->getRepository(Group::class)->findOneBy(['name' => 'Frajeři']);
+	 	//$group = $this->entityManager->getRepository(Group::class)->findOneBy(['name' => 'Frajeři']);
 
 //		$user->getGroups()->add($group);
 //	 	$this->entityManager->persist($user);
@@ -56,8 +74,8 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
 //	 	$buddy = $this->entityManager->getRepository(User::class)->findOneBy(['name' => 'Jana']);
 
 //	 	$user->addBuddy($buddy);
-	 	dump($user->getGroups()->toArray());
-	 	dump($group->getMembers()->toArray());
+	 	//dump($user->getGroups()->toArray());
+	 	//dump($group->getMembers()->toArray());
 
 
 //	 	$this->entityManager->persist($user);

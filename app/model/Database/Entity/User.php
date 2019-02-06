@@ -2,12 +2,10 @@
 
 namespace App\Model\Database\Entity;
 
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
 
 use Ramsey\Uuid\UuidInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -57,6 +55,18 @@ class User {
 	 */
 	private $groups;
 
+	/**
+	 * @ORM\Column(type="string", nullable=true)
+	 * @var string
+	 */
+	protected $codeReset;
+
+	/**
+	 * @ORM\Column(type="integer")
+	 * @version
+	 */
+	protected $version;
+
 	public function __construct(string $name) {
 
 		$this->setName($name);
@@ -89,7 +99,12 @@ class User {
 //		return ($s ? $s->getCreatedAt()->format('d.m.y H:i') : null);
 	}
 
-
+	/**
+	 * @param string $codeReset
+	 */
+	public function setCodeReset(string $codeReset): void {
+		$this->codeReset = $codeReset;
+	}
 
 	/**
 	 * @param string $name
@@ -123,6 +138,11 @@ class User {
 		return $this->groups;
 	}
 
-
+	/**
+	 *
+	 */
+	public function getVersion(): void {
+		$this->version;
+	}
 
 }

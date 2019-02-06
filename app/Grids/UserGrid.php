@@ -37,7 +37,7 @@ class UserGrid extends \Nette\Application\UI\Control {
 //			)
 //			->from(User::class, 'u');
 
-		array_map()
+		//array_map()
 
 		$users = $this->entityManager->createQueryBuilder()
 			->select('u', 'h')

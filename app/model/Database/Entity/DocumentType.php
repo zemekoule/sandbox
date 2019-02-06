@@ -28,13 +28,6 @@ class DocumentType {
 	 */
 	private $name;
 
-	/**
-	 * @OneToMany(targetEntity="Document", mappedBy="type")
-	 * @var \Doctrine\ORM\PersistentCollection
-	 */
-	protected $documents;
-
-
 	public function __construct(string $name) {
 
 		$this->setName($name);
@@ -55,10 +48,4 @@ class DocumentType {
 		$this->name = $name;
 	}
 
-	/**
-	 * @return \Doctrine\ORM\PersistentCollection
-	 */
-	public function getDocuments(): \Doctrine\ORM\PersistentCollection {
-		return $this->documents;
-	}
 }
