@@ -2,16 +2,18 @@
 
 namespace FrontModule;
 
+use App\Components\NameForm;
 use App\Model\Database\Entity\User;
-use App\Model\Database\Entity\UserLoginHistory;
 use App\Model\Database\EntityManager;
 use Nette;
-use Nette\Application\UI\Form;
 
 class HomepagePresenter extends Nette\Application\UI\Presenter {
 
 	/** @var \App\Components\IHelloWorld @inject */
 	public $helloWorldFactory;
+
+	/** @var \App\Components\INameFormFactory @inject */
+	public $nameFormFactory;
 
 	/** @var EntityManager @inject */
 	public $entityManager;
@@ -55,26 +57,13 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
 
 	protected function createComponentNameForm()
 	{
-		$form = new Form();
-		$form->addText('name', 'Jméno:');
-		$form->addSubmit('login', 'Registrovat');
-		$form->onSuccess[] = [$this, 'registrationNameFormSucceeded'];
+		$control = $this->nameFormFactory->create();
+		$control->onCategorySave[] = function () {
+			$this->flashMessage('Tvoje jméno bylo odesláno!');
+			$this->redirect('Homepage:');
+		};
 
-		return $form;
-	}
-
-	// volá se po úspěšném odeslání formuláře
-
-	/**
-	 * @param \Nette\Application\UI\Form $form
-	 *
-	 * @throws \Nette\Application\AbortException
-	 */
-	public function registrationNameFormSucceeded(Form $form)
-	{
-		$values = $form->getValues();
-		$this->flashMessage('Tvoje jméno bylo odesláno!');
-		$this->redirect('Homepage:');
+		return $control;
 	}
 
 }
