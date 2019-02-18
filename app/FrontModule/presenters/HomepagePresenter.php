@@ -6,6 +6,7 @@ use App\Model\Database\Entity\User;
 use App\Model\Database\Entity\UserLoginHistory;
 use App\Model\Database\EntityManager;
 use Nette;
+use Nette\Application\UI\Form;
 
 class HomepagePresenter extends Nette\Application\UI\Presenter {
 
@@ -50,6 +51,30 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
 	protected function createComponentHelloWorld()
 	{
 		return $this->helloWorldFactory->create();
+	}
+
+	protected function createComponentNameForm()
+	{
+		$form = new Form();
+		$form->addText('name', 'Jméno:');
+		$form->addSubmit('login', 'Registrovat');
+		$form->onSuccess[] = [$this, 'registrationNameFormSucceeded'];
+
+		return $form;
+	}
+
+	// volá se po úspěšném odeslání formuláře
+
+	/**
+	 * @param \Nette\Application\UI\Form $form
+	 *
+	 * @throws \Nette\Application\AbortException
+	 */
+	public function registrationNameFormSucceeded(Form $form)
+	{
+		$values = $form->getValues();
+		$this->flashMessage('Tvoje jméno bylo odesláno!');
+		$this->redirect('Homepage:');
 	}
 
 }
