@@ -19,6 +19,7 @@ extensions:
 services:
 	router: App\RouterFactory::createRouter
 	- App\Grids\IUserGridFactory
+	- App\Components\IHelloWorld
 #	-
 #		class: app\model\Database\Repository\UserRepository
 #		factory: @\app\model\Database\EntityManager::getRepository(app\model\Database\Entity\User)

@@ -9,6 +9,9 @@ use Nette;
 
 class HomepagePresenter extends Nette\Application\UI\Presenter {
 
+	/** @var \App\Components\IHelloWorld @inject */
+	public $helloWorldFactory;
+
 	/** @var EntityManager @inject */
 	public $entityManager;
 
@@ -40,4 +43,13 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
 	public function createComponentUserGrid() {
 		return $this->userGridFactory->create();
 	}
+
+	/**
+	 * @return \App\Components\HelloWorld
+	 */
+	protected function createComponentHelloWorld()
+	{
+		return $this->helloWorldFactory->create();
+	}
+
 }
