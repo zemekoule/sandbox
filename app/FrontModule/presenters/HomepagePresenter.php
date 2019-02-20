@@ -2,6 +2,8 @@
 
 namespace FrontModule;
 
+use App\Components\CommentFormControl;
+use App\Components\CommentFormControlFactory;
 use App\Components\NameForm;
 use App\Model\Database\Entity\User;
 use App\Model\Database\EntityManager;
@@ -23,6 +25,9 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
 	 * @inject
 	 */
 	public $userGridFactory;
+
+	/** @var CommentFormControlFactory @inject */
+	public $commentFormControlFactory;
 
 	/**
 	 * @throws \Doctrine\ORM\ORMException
@@ -64,6 +69,16 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
 		};
 
 		return $control;
+	}
+
+	protected function createComponentCommentForm()
+	{
+		$successCallback = function (CommentFormControl $control) {
+			$this->flashMessage('Díky za komentář', 'success');
+			$this->redirect('this');
+		};
+
+		return $this->commentFormControlFactory->create($successCallback);
 	}
 
 }
