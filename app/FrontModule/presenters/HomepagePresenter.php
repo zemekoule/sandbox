@@ -41,12 +41,12 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
 		/** @var User $user */
 		$user = $this->entityManager->getRepository(User::class)->findOneBy(['name' => 'Jarda']);
 		$entityId = $user->getId();
-		$users = $this->entityManager->find(User::class, $entityId, LockMode::OPTIMISTIC, 0);
+		//$users = $this->entityManager->find(User::class, $entityId, LockMode::OPTIMISTIC, 0);
 		//$user->setCodeReset($codeReset);
 		//$this->entityManager->persist($user);
 		//$this->entityManager->flush();
 
-		dump($users);
+		//dump($users);
 	}
 
 	/**
