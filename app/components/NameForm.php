@@ -9,19 +9,22 @@ class NameForm extends Control
 {
 	public $onCategorySave;
 
-	protected function createComponentNameForm(callable $onSuccess)
+	protected function createComponentNameForm()
 	{
 		$form = new Form();
 		$form->addText('name', 'Jméno:');
 		$form->addSubmit('login', 'Registrovat');
-		$form->onSuccess[] = function(Form $form, $values) use ($onSuccess): void {
-
-			bdump($values, 'Něco z formuláře');
-			$onSuccess();
-		};
+		$form->onSuccess[] = [$this, 'processForm'];
 
 		return $form;
 	}
+
+	public function processForm(Form $form)
+	{
+
+		$this->onCategorySave($this);
+	}
+
 
 	public function render()
 	{
