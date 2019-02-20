@@ -2,6 +2,7 @@
 
 namespace App\Model\Database\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
 
@@ -9,6 +10,7 @@ use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity
+ * @Gedmo\Loggable
  */
 // * @ORM\Entity(repositoryClass="app\model\Database\Repository\UserRepository")
 class User {
@@ -26,6 +28,7 @@ class User {
 
 	/**
 	 * @ORM\Column(type="string")
+	 * @Gedmo\Versioned
 	 * @var string
 	 */
 	private $name;

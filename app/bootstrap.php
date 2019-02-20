@@ -24,4 +24,17 @@ $configurator->addConfig(__DIR__ . '/config/config.local.neon');
 
 $container = $configurator->createContainer();
 
+$application = $container->getByType(\Nette\Application\Application::class);
+
+$application->onPresenter[] = function(\Nette\Application\Application $application, \Nette\Application\UI\Presenter $presenter) use ($container) {
+	$cachedAnnotationReader = $container->getByType(\Doctrine\Common\Annotations\Reader::class);
+
+	$loggableListener = new Gedmo\Loggable\LoggableListener;
+	$loggableListener->setAnnotationReader($cachedAnnotationReader);
+	$loggableListener->setUsername((string) $presenter->getUser()->getId());
+
+	$container->getByType(\Doctrine\Common\EventManager::class)
+		->addEventSubscriber($loggableListener);
+};
+
 return $container;

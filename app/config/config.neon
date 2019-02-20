@@ -14,6 +14,7 @@ extensions:
     orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
     console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
     migrations: Nettrine\Migrations\DI\MigrationsExtension
+    nettrine.extensions: Nettrine\Extensions\DI\DoctrineExtensionsExtension
 
 services:
 	router: App\RouterFactory::createRouter
@@ -22,11 +23,22 @@ services:
 #		class: app\model\Database\Repository\UserRepository
 #		factory: @\app\model\Database\EntityManager::getRepository(app\model\Database\Entity\User)
 
-
+nettrine.extensions:
+    loggable: on
+    sluggable: off
+    softDeleteable: off
+    treeable: off
+    blameable: off
+    timestampable: off
+    translatable: off
+    uploadable: off
+    sortable: off
+    ipTraceable: off
 
 orm.annotations:
 	paths:
 		- app/model/Database/Entity
+		- vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity
 	ignore: [] # ignored annotations
 #	cache: Doctrine\Common\Cache\FilesystemCache
 #	cacheDir: '%tempDir%/cache/Doctrine.Annotations'
