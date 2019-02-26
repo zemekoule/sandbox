@@ -27,6 +27,7 @@ class UserGrid extends \Nette\Application\UI\Control {
 	public function createComponentUserGrid($name) {
 		$grid = new DataGrid($this, $name);
 
+
 //		$users = $this->entityManager->createQueryBuilder()
 //			->select('u')
 //			->addSelect('(SELECT h.createdAt
