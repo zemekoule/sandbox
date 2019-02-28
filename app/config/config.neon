@@ -15,6 +15,7 @@ extensions:
     console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
     migrations: Nettrine\Migrations\DI\MigrationsExtension
     nettrine.extensions: Nettrine\Extensions\DI\DoctrineExtensionsExtension
+    fixtures: Nettrine\Fixtures\DI\FixturesExtension
 
 services:
 	router: App\RouterFactory::createRouter
@@ -34,6 +35,10 @@ nettrine.extensions:
     uploadable: off
     sortable: off
     ipTraceable: off
+
+fixtures:
+    paths:
+        - app/model/Database/Fixtures
 
 orm.annotations:
 	paths:

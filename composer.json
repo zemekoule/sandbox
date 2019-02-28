@@ -26,7 +26,8 @@
 	  	"ramsey/uuid": "^3.8",
 	  	"ramsey/uuid-doctrine": "^1.5",
 	  	"ublaboo/datagrid": "^5.7",
-		"nettrine/extensions": "^0.3.0"
+		"nettrine/extensions": "^0.3.0",
+		"nettrine/fixtures": "^0.4.0"
 	},
 	"require-dev": {
 		"nette/tester": "^2.0"

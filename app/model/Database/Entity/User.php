@@ -68,7 +68,7 @@ class User {
 	 * @ORM\Column(type="integer")
 	 * @version
 	 */
-	protected $version;
+	protected $version = 0;
 
 	public function __construct(string $name) {
 
