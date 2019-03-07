@@ -3,9 +3,7 @@
 namespace App\Grids;
 
 use App\Model\Database\Entity\User;
-use App\Model\Database\Entity\UserLoginHistory;
 use Doctrine\ORM\EntityManager;
-use Ramsey\Uuid\Uuid;
 use Ublaboo\DataGrid\DataGrid;
 
 class UserGrid extends \Nette\Application\UI\Control {
@@ -13,7 +11,7 @@ class UserGrid extends \Nette\Application\UI\Control {
 	/** @var EntityManager */
 	private $entityManager;
 
-	public function __construct(EntityManager $entityManager, EntityManager $d) {
+	public function __construct(EntityManager $entityManager) {
 		 parent::__construct();
 		$this->entityManager = $entityManager;
 	}

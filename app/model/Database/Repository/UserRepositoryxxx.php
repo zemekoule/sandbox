@@ -7,5 +7,5 @@ use Doctrine\ORM\EntityRepository as DoctrineEntityRepository;
 /**
  * Custom UserRepository
  */
-final class UserRepositoryxxx extends DoctrineEntityRepository {
+final class UserRepository extends DoctrineEntityRepository {
 }
