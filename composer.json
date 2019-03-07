@@ -29,7 +29,8 @@
 		"webchemistry/forms-multiplier": "^3.0"
 	},
 	"require-dev": {
-		"nette/tester": "^2.0"
+		"nette/tester": "^2.0",
+	  	"phpstan/phpstan-nette": "^0.10.1"
 	},
 	"minimum-stability": "stable",
 	"config": {
