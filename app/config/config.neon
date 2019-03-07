@@ -30,7 +30,7 @@ nettrine.extensions:
     softDeleteable: off
     treeable: off
     blameable: off
-    timestampable: off
+    timestampable: on
     translatable: off
     uploadable: off
     sortable: off

@@ -50,15 +50,17 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
 //		$loggableListener->setUsername('Lojza');
 //		$this->entityManager->getEventManager()->addEventSubscriber($loggableListener);
 
-		$codeReset = Nette\Utils\Random::generate(10, 'A-Za-z');
+		//$codeReset = Nette\Utils\Random::generate(10, 'A-Za-z');
 		/** @var User $user */
 		$user = $this->entityManager->getRepository(User::class)->find('2288a9ab-1455-4e1d-a6c5-72c84ea98a89');
 		//$entityId = $user->getId();
 		//$users = $this->entityManager->find(User::class, $entityId, LockMode::OPTIMISTIC, 0);
-		$user->setCodeReset($codeReset);
+		//$user->setCodeReset($codeReset);
 		$user->setName('Jarda '.time());
 		$this->entityManager->persist($user);
 		$this->entityManager->flush();
+
+		bdump($user->getModified()->format('Y-m-d'));
 
 		/** @var \Gedmo\Loggable\Entity\Repository\LogEntryRepository $repo */
 		$repo = $this->entityManager->getRepository('Gedmo\Loggable\Entity\LogEntry'); // we use default log entry class

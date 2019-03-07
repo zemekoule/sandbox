@@ -2,6 +2,7 @@
 
 namespace App\Model\Database\Entity;
 
+use DateTime;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
@@ -69,6 +70,18 @@ class User {
 	 * @version
 	 */
 	protected $version = 0;
+
+	/**
+	 * @Gedmo\Timestampable(on="create")
+	 * @ORM\Column(type="datetime", nullable=true)
+	 */
+	private $created;
+
+	/**
+	 * @Gedmo\Timestampable(on="update")
+	 * @ORM\Column(type="date", nullable=true)
+	 */
+	private $modified;
 
 	public function __construct(string $name) {
 
@@ -147,5 +160,21 @@ class User {
 	public function getVersion(): void {
 		$this->version;
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getCreated() {
+		return $this->created;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getModified() {
+		return $this->modified;
+	}
+
+
 
 }
