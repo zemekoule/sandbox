@@ -1,0 +1,9 @@
+parameters:
+	autoload_files:
+		- %rootDir%/../../../app/bootstrap.php
+	excludes_analyse:
+		- %rootDir%/../../../app/FrontModule/presenters/ErrorPresenter.php
+		- %rootDir%/../../../app/FrontModule/presenters/Error4xxPresenter.php
+
+includes:
+	- vendor/phpstan/phpstan-nette/extension.neon
