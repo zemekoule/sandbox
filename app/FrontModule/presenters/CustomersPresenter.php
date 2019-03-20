@@ -19,7 +19,7 @@ class CustomersPresenter extends Nette\Application\UI\Presenter {
 		$copies = 1;
 		$maxCopies = 10;
 
-		$form = new Nette\Application\UI\Form();
+		$form = new BaseForm();
 		$form->addText('company', 'Firma');
 
 		//$form->addContainer('subFormRows');
